@@ -1,9 +1,9 @@
 [
   {
-    "id": "example-tweak",
-    "name": "Example Tweak",
-    "tagline": "One-line summary shown in the list view",
-    "description": "A longer paragraph shown on the tweak's own page. Explain what it does, why someone would want it, and any quirks or requirements.",
+    "id": "artificially-intelligent",
+    "name": "Artificially Intelligent",
+    "tagline": "place the holder im lazy",
+    "description": "AI Frontend for legacy iOS. Runs on ollama or any OpenAI compatible tweak.",
     "icon": "https://via.placeholder.com/120",
     "screenshots": [],
     "version": "1.0.0",
