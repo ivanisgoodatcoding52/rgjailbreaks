@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tweak Details</title>
+<style>
+  body { font-family: -apple-system, sans-serif; background:#111; color:#eee; margin:0; padding:40px 20px; }
+  .wrap { max-width: 600px; margin: 0 auto; }
+  .back { color:#999; text-decoration:none; font-size:0.85em; }
+  .header { display:flex; gap:16px; align-items:center; margin: 20px 0; }
+  .header img { width: 72px; height: 72px; border-radius: 16px; background:#333; object-fit:cover; }
+  h1 { margin: 0 0 4px 0; font-size: 1.4em; }
+  .meta { color:#999; font-size:0.85em; }
+  .desc { line-height: 1.5; margin-top: 20px; }
+  .install-btn { display:inline-block; margin-top: 24px; background:#0a84ff; color:white; padding: 12px 20px; border-radius: 10px; text-decoration:none; font-weight:600; }
+  .not-found { color:#999; margin-top: 40px; }
+</style>
+</head>
+<body>
+<div class="wrap" id="content">
+  <a class="back" href="index.html">&larr; Back to repo</a>
+  <div id="tweak"></div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+const id = params.get('id');
+
+fetch('tweaks.json')
+  .then(r => r.json())
+  .then(tweaks => {
+    const t = tweaks.find(x => x.id === id);
+    const container = document.getElementById('tweak');
+    if (!t) {
+      container.innerHTML = '<p class="not-found">Tweak not found.</p>';
+      return;
+    }
+    container.innerHTML = `
+      <div class="header">
+        <img src="${t.icon}" alt="${t.name}">
+        <div>
+          <h1>${t.name}</h1>
+          <div class="meta">${t.version} &middot; ${t.author} &middot; ${t.price}</div>
+        </div>
+      </div>
+      <div class="desc">${t.description}</div>
+      <a class="install-btn" href="cydia://package/${t.package}">Open in Cydia</a>
+      <a class="install-btn" href="sileo://package/${t.package}" style="margin-left:8px;">Open in Sileo</a>
+    `;
+  });
+</script>
+</body>
+</html>

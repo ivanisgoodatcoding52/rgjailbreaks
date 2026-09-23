@@ -4,15 +4,69 @@
 <meta charset="UTF-8">
 <title>RG Jailbreaks</title>
 <style>
-  body { font-family: -apple-system, sans-serif; background:#111; color:#eee; text-align:center; padding:60px 20px; }
-  h1 { font-size: 2em; }
-  code { background:#222; padding:4px 8px; border-radius:6px; }
+  body { font-family: -apple-system, sans-serif; background:#111; color:#eee; margin:0; padding:40px 20px; }
+  .wrap { max-width: 640px; margin: 0 auto; }
+  h1 { font-size: 1.8em; margin-bottom: 4px; }
+  .sub { color: #999; margin-top: 0; }
+  .add-buttons { display: flex; gap: 12px; margin: 24px 0; }
+  .add-buttons a { display: flex; align-items: center; gap: 8px; background:#222; color:#eee; text-decoration:none; padding: 10px 16px; border-radius: 10px; font-size: 0.9em; }
+  .add-buttons img { width: 24px; height: 24px; }
+  .url-box { background:#1a1a1a; padding: 10px 14px; border-radius: 8px; font-size: 0.85em; word-break: break-all; color:#aaa; }
+  .tweak-list { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+  .tweak-card { display: flex; gap: 14px; align-items: center; background:#1a1a1a; padding: 12px; border-radius: 10px; text-decoration:none; color:#eee; }
+  .tweak-card img { width: 48px; height: 48px; border-radius: 10px; object-fit: cover; background:#333; }
+  .tweak-info h3 { margin: 0 0 2px 0; font-size: 1em; }
+  .tweak-info p { margin: 0; font-size: 0.85em; color: #999; }
+  .empty { color: #666; font-size: 0.9em; margin-top: 20px; }
 </style>
 </head>
 <body>
+<div class="wrap">
   <h1>RG Jailbreaks</h1>
-  <p>Cydia/Sileo repo for rg</p>
-  <p>Add this URL as a source in Sileo or Zebra:</p>
-  <code>https://ivanisgoodatcoding52.github.io/rgjailbreaks/</code>
+  <p class="sub">Cydia/Sileo repo for rg</p>
+
+  <div class="add-buttons">
+    <a href="cydia://url/https://ivanisgoodatcoding52.github.io/rgjailbreaks/">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cydia_logo.png" alt="Cydia">
+      Add to Cydia
+    </a>
+    <a href="sileo://source/https://ivanisgoodatcoding52.github.io/rgjailbreaks/">
+      <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Icon_Sileo.png" alt="Sileo">
+      Add to Sileo
+    </a>
+  </div>
+
+  <div class="url-box">https://ivanisgoodatcoding52.github.io/rgjailbreaks/</div>
+
+  <div id="tweak-list" class="tweak-list"></div>
+  <p id="empty-msg" class="empty" style="display:none;">No tweaks published yet.</p>
+</div>
+
+<script>
+fetch('tweaks.json')
+  .then(r => r.json())
+  .then(tweaks => {
+    const list = document.getElementById('tweak-list');
+    if (!tweaks.length) {
+      document.getElementById('empty-msg').style.display = 'block';
+      return;
+    }
+    tweaks.forEach(t => {
+      const a = document.createElement('a');
+      a.className = 'tweak-card';
+      a.href = 'depiction.html?id=' + encodeURIComponent(t.id);
+      a.innerHTML = `
+        <img src="${t.icon}" alt="${t.name}">
+        <div class="tweak-info">
+          <h3>${t.name}</h3>
+          <p>${t.tagline}</p>
+        </div>`;
+      list.appendChild(a);
+    });
+  })
+  .catch(() => {
+    document.getElementById('empty-msg').style.display = 'block';
+  });
+</script>
 </body>
 </html>

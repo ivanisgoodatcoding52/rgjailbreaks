@@ -1,0 +1,15 @@
+[
+  {
+    "id": "example-tweak",
+    "name": "Example Tweak",
+    "tagline": "One-line summary shown in the list view",
+    "description": "A longer paragraph shown on the tweak's own page. Explain what it does, why someone would want it, and any quirks or requirements.",
+    "icon": "https://via.placeholder.com/120",
+    "screenshots": [],
+    "version": "1.0.0",
+    "author": "rg",
+    "price": "Free",
+    "package": "com.rg.exampletweak",
+    "depends": "firmware (>= 14.0)"
+  }
+]
