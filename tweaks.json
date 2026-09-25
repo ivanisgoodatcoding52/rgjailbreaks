@@ -1,15 +1,15 @@
 [
   {
-    "id": "artificially-intelligent",
-    "name": "Artificially Intelligent",
-    "tagline": "place the holder im lazy",
-    "description": "AI Frontend for legacy iOS. Runs on ollama or any OpenAI compatible tweak.",
-    "icon": "https://via.placeholder.com/120",
+    "id": "splitlite",
+    "name": "SplitLite",
+    "tagline": "Simple split-screen multitasking for legacy iOS.",
+    "description": "A lightweight tweak that brings split-screen multitasking to older iOS devices. Run two apps side by side and make better use of your screen without needing a newer iPad or iOS version.",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/e/e0/Merge-split-transwiki_default.svg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
     "screenshots": [],
     "version": "1.0.0",
     "author": "rg",
     "price": "Free",
-    "package": "com.rg.exampletweak",
+    "package": "com.rg.splitlite",
     "depends": "firmware (>= 14.0)"
   }
 ]
